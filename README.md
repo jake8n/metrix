@@ -4,6 +4,12 @@
 
 Framework for scheduling and recording [systeminformation](https://www.npmjs.com/package/systeminformation) to TimescaleDB.
 
+Prerequisites:
+
+* PostgreSQL
+* TimescaleDB
+* Redis
+
 An `.env` file should be created and populated with database credentials and other data. [PM2](https://www.npmjs.com/package/pm2) can be used to manage the processes or they can run in the background:
 
 ```
