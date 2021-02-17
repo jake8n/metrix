@@ -9,10 +9,7 @@ const routes = [
   {
     method: "GET",
     url: "/",
-    handler: async () => {
-      const repeatableJobs = await queue.getRepeatableJobs();
-      return repeatableJobs;
-    },
+    handler: () => queue.getRepeatableJobs(),
   },
   {
     method: "GET",
