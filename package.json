@@ -1,0 +1,16 @@
+{
+  "name": "metrix",
+  "version": "0.0.0",
+  "license": "MIT",
+  "volta": {
+    "node": "14.15.5"
+  },
+  "dependencies": {
+    "bull": "^3.20.1",
+    "dotenv": "^8.2.0",
+    "fastify": "^3.12.0",
+    "slonik": "^23.5.5",
+    "systeminformation": "^5.3.3",
+    "undici": "^3.3.3"
+  }
+}
