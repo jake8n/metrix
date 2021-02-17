@@ -4,7 +4,7 @@
 
 Framework for scheduling and recording [systeminformation](https://www.npmjs.com/package/systeminformation) to TimescaleDB.
 
-![architecture](/architecture.png)
+![architecture](/docs/architecture.png)
 
 ## Setup
 
