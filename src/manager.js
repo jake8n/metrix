@@ -35,9 +35,11 @@ const routes = [
     url: "/:id",
     handler: async ({ params }, reply) => {
       const { id } = params;
-      await pool.query(sql`DELETE FROM metric_metas WHERE id=${id}`);
-      await pool.query(sql`DELETE FROM metric_values WHERE id=${id}`);
-      await request(SCHEDULER_URL + id, { method: "DELETE" });
+      await Promise.all([
+        pool.query(sql`DELETE FROM metric_metas WHERE id=${id}`),
+        pool.query(sql`DELETE FROM metric_values WHERE id=${id}`),
+        request(SCHEDULER_URL + id, { method: "DELETE" }),
+      ]);
       reply.code(204);
     },
   },
