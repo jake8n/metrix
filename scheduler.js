@@ -1,3 +1,4 @@
-require("dotenv").config();
-const { Scheduler } = require("./src/scheduler");
+// @ts-check
+import "dotenv/config.js";
+import { Scheduler } from "./src/scheduler.js";
 Scheduler();

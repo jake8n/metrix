@@ -1,6 +1,8 @@
-const { createPool, sql } = require("slonik");
-const fastify = require("fastify");
-const { request } = require("undici");
+// @ts-check
+import { createPool, sql } from "slonik";
+import fastify from "fastify";
+import undici from "undici";
+const { request } = undici;
 
 const { DB_USER, DB_SECRET, DB_HOST, DB_NAME, SCHEDULER_URL } = process.env;
 const uri = `postgres://${DB_USER}:${DB_SECRET}@${DB_HOST}/${DB_NAME}`;
@@ -65,15 +67,11 @@ const routes = [
   },
 ];
 
-const Manager = async () => {
+export const Manager = async () => {
   await pool.query(
     sql`CREATE TABLE IF NOT EXISTS metric_metas(id TEXT NOT NULL UNIQUE, description TEXT NOT NULL)`
   );
   const server = fastify({ logger: true });
   routes.forEach((route) => server.route(route));
   await server.listen(process.env.PORT, "0.0.0.0");
-};
-
-module.exports = {
-  Manager,
 };

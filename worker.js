@@ -1,3 +1,4 @@
-require("dotenv").config();
-const { Worker } = require("./src/worker");
+// @ts-check
+import "dotenv/config.js";
+import { Worker } from "./src/worker.js";
 Worker();

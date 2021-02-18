@@ -1,3 +1,4 @@
-require("dotenv").config();
-const { Manager } = require("./src/manager");
+// @ts-check
+import "dotenv/config.js";
+import { Manager } from "./src/manager.js";
 Manager();

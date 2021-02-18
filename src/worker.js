@@ -1,6 +1,7 @@
-const { createPool, sql } = require("slonik");
-const Bull = require("bull");
-const si = require("systeminformation");
+// @ts-check
+import { createPool, sql } from "slonik";
+import Bull from "bull";
+import si from "systeminformation";
 
 const { DB_USER, DB_SECRET, DB_HOST, DB_NAME, QUEUE_NAME } = process.env;
 const uri = `postgres://${DB_USER}:${DB_SECRET}@${DB_HOST}/${DB_NAME}`;
@@ -19,13 +20,9 @@ const collect = async ({ name: id }) => {
   );
 };
 
-const Worker = async () => {
+export const Worker = async () => {
   await pool.query(
     sql`CREATE TABLE IF NOT EXISTS metric_values(time TIMESTAMPTZ NOT NULL, id TEXT NOT NULL, value DOUBLE PRECISION NULL)`
   );
   await queue.process("*", collect);
-};
-
-module.exports = {
-  Worker,
 };

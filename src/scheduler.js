@@ -1,6 +1,8 @@
-const fastify = require("fastify");
-const Bull = require("bull");
-const { request } = require("undici");
+// @ts-check
+import fastify from "fastify";
+import Bull from "bull";
+import undici from "undici";
+const { request } = undici;
 
 const { QUEUE_NAME, MANAGER_URL } = process.env;
 const queue = new Bull(QUEUE_NAME);
@@ -63,12 +65,8 @@ const routes = [
   },
 ];
 
-const Scheduler = async () => {
+export const Scheduler = async () => {
   const server = fastify({ logger: true });
   routes.forEach((route) => server.route(route));
   await server.listen(process.env.PORT, "0.0.0.0");
-};
-
-module.exports = {
-  Scheduler,
 };
